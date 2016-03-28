@@ -3,9 +3,7 @@
 Esta seguro de eliminar el contacto: <b><?php echo $datos_contacto[0]->con_nombre ?></b> <br/>
 
 <?php
-$input_con_id = array(
-'con_id'  =>  $datos_contacto[0]->con_id
-)
+$input_con_id = array('con_id'  =>  $datos_contacto[0]->con_id)
 ?>
 
 <?php echo form_open() ?><br/>

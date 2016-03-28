@@ -22,6 +22,7 @@ class Contactos extends CI_Controller {
                 
                 /*Ahora se mandará llamar el modelo
 				*/
+				$this->load->helper('url');
 				$this->load->model('M_contactos');
 				
 				//Ahora se mandará llamar una función del modelo
