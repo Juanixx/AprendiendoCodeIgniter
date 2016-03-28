@@ -99,6 +99,7 @@ class Contactos extends CI_Controller {
 				}
 				
 			$this->load->helper('form');
+			$this->load->helper('url');
 			$this->load->library('form_validation');
 			$this->load->model('M_contactos');
 			
@@ -115,7 +116,8 @@ class Contactos extends CI_Controller {
 				$this->form_validation->set_rules('con_estatus','Estatus','trim');
 				
 				if($this->form_validation->run()==TRUE){
-					
+					$this->M_contactos->edit($id);
+					redirect('contactos');
 				}else{
 					$this->load->view('view_form_contactos');
 				}

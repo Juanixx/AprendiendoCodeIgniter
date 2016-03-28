@@ -32,6 +32,15 @@ class M_contactos extends CI_Model {
 			return $this->db->insert_id();
 		}
 		
+		function edit($id){
+			$this->load->database();
+			
+			$data_editar = $this->input->post();
+			unset($data_editar['btn_enviar']);
+			$this->db->where('con_id',$id);
+			$this->db->update('contactos',$data_editar);
+		}
+		
 
 }
 /*Fin de mi archivo m_contactos.php */
