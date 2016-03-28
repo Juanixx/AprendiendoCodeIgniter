@@ -34,11 +34,16 @@ class M_contactos extends CI_Model {
 		
 		function edit($id){
 			$this->load->database();
-			
 			$data_editar = $this->input->post();
 			unset($data_editar['btn_enviar']);
 			$this->db->where('con_id',$id);
 			$this->db->update('contactos',$data_editar);
+		}
+		
+		function elim($id){
+			$this->load->database();
+			$this->db->where('con_id',$id);
+			$this->db->delete('contactos');
 		}
 		
 

@@ -139,6 +139,35 @@ class Contactos extends CI_Controller {
 			//print_r($data['datos_contacto']);
 			
 			}
+			public function eliminar($id){
+					if($id==NULL OR !is_numeric($id)){
+					echo "Error con el ID";
+					return;
+				}
+				
+			$this->load->helper('form');
+			$this->load->helper('url');
+			$this->load->model('M_contactos');
+			
+			if($this->input->post())
+			{
+				$id_eliminar=$this->input->post('con_id');
+				$this->M_contactos->elim($id_eliminar);
+				redirect('contactos');
+			}		
+			else{
+				$data['datos_contacto']=$this->M_contactos->get_by_id($id);
+				if(empty($data['datos_contacto'])){
+					echo 'El ID es Invalido';
+					
+				}else{
+					//echo "Pasar a la vista";
+					$this->load->view('view_elim_contactos',$data);
+						}
+			}	
+			
+			
+			}
 			
 			
 		
