@@ -2,7 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Contactos extends CI_Controller {
-
+		public function __construct()
+        {
+                parent::__construct();
+                $this->load->helper('form');
+				$this->load->helper('url');
+				$this->load->library('form_validation');
+				$this->load->model('M_contactos');
+        }
+        
         public function index()
         {
                 //echo 'Hola mundo! 2';
@@ -22,8 +30,8 @@ class Contactos extends CI_Controller {
                 
                 /*Ahora se mandará llamar el modelo
 				*/
-				$this->load->helper('url');
-				$this->load->model('M_contactos');
+				/*$this->load->helper('url');
+				$this->load->model('M_contactos');*/
 				
 				//Ahora se mandará llamar una función del modelo
 				$data['listado'] = $this->M_contactos->get_todos();
@@ -45,8 +53,6 @@ class Contactos extends CI_Controller {
                 
         }
         public function agregar(){
-			$this->load->helper('form');
-			$this->load->library('form_validation');
 			
 			
 			/**Para indicar que se van a recibir datos de la vista,
@@ -76,7 +82,7 @@ class Contactos extends CI_Controller {
 				
 					/**Ahora se manda llamar la función agregar del modelo
 					*/
-					$this->load->model('M_contactos');
+					//$this->load->model('M_contactos');
 					$id_insertado=$this->M_contactos->agregar();
 					echo "El ID creado es: ".$id_insertado;
 				}else{
@@ -98,12 +104,7 @@ class Contactos extends CI_Controller {
 					echo "Error con el ID";
 					return;
 				}
-				
-			$this->load->helper('form');
-			$this->load->helper('url');
-			$this->load->library('form_validation');
-			$this->load->model('M_contactos');
-			
+									
 			if($this->input->post()){
 				/**Aquí se definen las reglas de validación*/
 				/**Para hacer más validaciones se usa el símbolo: '|' 
@@ -145,10 +146,6 @@ class Contactos extends CI_Controller {
 					echo "Error con el ID";
 					return;
 				}
-				
-			$this->load->helper('form');
-			$this->load->helper('url');
-			$this->load->model('M_contactos');
 			
 			if($this->input->post())
 			{
@@ -168,10 +165,7 @@ class Contactos extends CI_Controller {
 			}	
 			
 			
-			}
-			
-			
-		
+			}		
 }
 
 /*Fin de mi archivo Contactos.php */
