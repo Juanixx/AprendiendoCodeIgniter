@@ -10,7 +10,7 @@ $input_con_email = array(
         'id'    => 'con_email',
         'maxlength'    => '120',
         'size' => '100',
-        'value' => set_value('con_email')
+        'value' => set_value('con_email', @$datos_contacto[0]->con_email)
 );
 
 $input_con_nombre = array(
@@ -18,7 +18,7 @@ $input_con_nombre = array(
         'id'    => 'con_nombre',
         'maxlength'    => '60',
         'size' => '50',
-        'value' => set_value('con_nombre')
+        'value' => set_value('con_nombre',@$datos_contacto[0]->con_nombre)
 );
 
 $input_con_telefono = array(
@@ -26,7 +26,7 @@ $input_con_telefono = array(
         'id'    => 'con_telefono',
         'maxlength'    => '20',
         'size' => '18',
-        'value' => set_value('con_telefono')
+        'value' => set_value('con_telefono',@$datos_contacto[0]->con_telefono)
 );
 
 $input_con_edad = array(
@@ -34,7 +34,7 @@ $input_con_edad = array(
         'id'    => 'con_edad',
         'maxlength'    => '3',
         'size' => '4',
-        'value' => set_value('con_edad')
+        'value' => set_value('con_edad',@$datos_contacto[0]->con_edad)
 );
 
 $estatus = array(
@@ -62,7 +62,7 @@ $estatus = array(
 <?php echo form_input($input_con_edad)?><?php echo form_error('con_edad')?><br/><br/>
 
 <?php echo form_label('Estatus'); ?><br/>
-<?php echo form_dropdown('con_estatus',$estatus,set_value('con_estatus'))?><br/><br/>
+<?php echo form_dropdown('con_estatus',$estatus,set_value('con_estatus',@$datos_contacto[0]->con_estatus))?><br/><br/>
 
 <?php echo form_submit('btn_enviar','Guardar!'); ?>
 

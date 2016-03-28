@@ -102,13 +102,36 @@ class Contactos extends CI_Controller {
 			$this->load->library('form_validation');
 			$this->load->model('M_contactos');
 			
-			$data['datos_contacto']=$this->M_contactos->get_by_id($id);
+			if($this->input->post()){
+				/**Aquí se definen las reglas de validación*/
+				/**Para hacer más validaciones se usa el símbolo: '|' 
+				*/
+				
+				$this->form_validation->set_rules('con_email','Email','required|valid_email');
+				$this->form_validation->set_rules('con_nombre','Nombre','required|min_length[3]');
+				$this->form_validation->set_rules('con_edad','Edad','required|integer');
+				
+				$this->form_validation->set_rules('con_telefono','Telefono','trim');
+				$this->form_validation->set_rules('con_estatus','Estatus','trim');
+				
+				if($this->form_validation->run()==TRUE){
+					
+				}else{
+					$this->load->view('view_form_contactos');
+				}
+				
+				}else{
+					$data['datos_contacto']=$this->M_contactos->get_by_id($id);
 			
-			if(empty($data['datos_contacto'])){
-				echo 'El ID es Invalido';
-			}else{
-				echo "Pasar a la vista";
+					if(empty($data['datos_contacto'])){
+						echo 'El ID es Invalido';
+					}else{
+					//echo "Pasar a la vista";
+					$this->load->view('view_form_contactos',$data);
 			}
+				}
+			
+			
 			
 			
 			//print_r($data['datos_contacto']);
