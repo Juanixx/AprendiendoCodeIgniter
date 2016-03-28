@@ -14,6 +14,15 @@ class M_contactos extends CI_Model {
 			
 		}
 		
+		function get_by_id($id){
+			$this->load->database(); //Para conectar con la base de datos
+			$query = $this->db->where('con_id',$id);
+			$query = $this->db->get('contactos');
+			return $query->result();
+			
+		}
+		
+		
 		function agregar(){
 			$this->load->database();
 			

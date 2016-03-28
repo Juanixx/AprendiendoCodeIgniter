@@ -91,6 +91,30 @@ class Contactos extends CI_Controller {
 				
 			}
 			
+			public function modificar($id = NULL){
+				
+				if($id==NULL OR !is_numeric($id)){
+					echo "Error con el ID";
+					return;
+				}
+				
+			$this->load->helper('form');
+			$this->load->library('form_validation');
+			$this->load->model('M_contactos');
+			
+			$data['datos_contacto']=$this->M_contactos->get_by_id($id);
+			
+			if(empty($data['datos_contacto'])){
+				echo 'El ID es Invalido';
+			}else{
+				echo "Pasar a la vista";
+			}
+			
+			
+			//print_r($data['datos_contacto']);
+			
+			}
+			
 			
 		
 }
