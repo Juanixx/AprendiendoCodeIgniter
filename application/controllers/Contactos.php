@@ -52,14 +52,7 @@ class Contactos extends CI_Controller {
                 
                 
         }
-        public function agregar(){
-			
-			
-			/**Para indicar que se van a recibir datos de la vista,
-			primero se valida si hay información entrante con in if, de 
-			lo contrario se muestra la vista
-			*/
-			if($this->input->post()){
+        function mis_reglas(){
 				/**Aquí se definen las reglas de validación*/
 				/**Para hacer más validaciones se usa el símbolo: '|' 
 				*/
@@ -70,6 +63,16 @@ class Contactos extends CI_Controller {
 				
 				$this->form_validation->set_rules('con_telefono','Telefono','trim');
 				$this->form_validation->set_rules('con_estatus','Estatus','trim');
+		}
+        public function agregar(){
+			
+			
+			/**Para indicar que se van a recibir datos de la vista,
+			primero se valida si hay información entrante con in if, de 
+			lo contrario se muestra la vista
+			*/
+			if($this->input->post()){
+				$this->mis_reglas();
 				/**Ahora, para que las validaciones se cumplan, se pasa a ejecutar
 				* la validación 
 				*/
@@ -106,16 +109,7 @@ class Contactos extends CI_Controller {
 				}
 									
 			if($this->input->post()){
-				/**Aquí se definen las reglas de validación*/
-				/**Para hacer más validaciones se usa el símbolo: '|' 
-				*/
-				
-				$this->form_validation->set_rules('con_email','Email','required|valid_email');
-				$this->form_validation->set_rules('con_nombre','Nombre','required|min_length[3]');
-				$this->form_validation->set_rules('con_edad','Edad','required|integer');
-				
-				$this->form_validation->set_rules('con_telefono','Telefono','trim');
-				$this->form_validation->set_rules('con_estatus','Estatus','trim');
+				$this->mis_reglas();
 				
 				if($this->form_validation->run()==TRUE){
 					$this->M_contactos->edit($id);
